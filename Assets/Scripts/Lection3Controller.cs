@@ -36,9 +36,18 @@ public class LectureScript : MonoBehaviour {
     [ContextMenu("Print")]
     private void Print()
     {
-        foreach (int el in _numbers)
-        {
-            Debug.Log($"{el}\n");
+        string result = "\n";
+        string separator = ", ";
+
+        for (int i = 0; i < _numbers.Count; i++) {
+            if (i == _numbers.Count - 1)
+            {
+                separator = ".";
+            }
+
+            result += $"{_numbers[i]}{separator}";
         }
+
+        Debug.Log(result);
     }
 }
