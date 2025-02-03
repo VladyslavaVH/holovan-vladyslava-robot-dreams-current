@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +17,7 @@ public class LectureScript : MonoBehaviour {
     private void Remove()
     {
         _numbers.Remove(_value);
+        _value = 0;
     }
 
     [ContextMenu("Sort")]
@@ -36,17 +36,18 @@ public class LectureScript : MonoBehaviour {
     [ContextMenu("Print")]
     private void Print()
     {
+        if (_numbers.Count == 0) return;
+
         string result = "\n";
         string separator = ", ";
 
-        for (int i = 0; i < _numbers.Count; i++) {
-            if (i == _numbers.Count - 1)
-            {
-                separator = ".";
-            }
-
+        for (int i = 0; i < _numbers.Count - 1; i++) {
             result += $"{_numbers[i]}{separator}";
         }
+
+        separator = ".";
+
+        result += $"{_numbers[^1]}{separator}";
 
         Debug.Log(result);
     }
